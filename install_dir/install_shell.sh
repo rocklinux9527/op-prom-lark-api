@@ -16,14 +16,14 @@ function checkDockerCompose() {
         cd ./docker-compose/
         echo -e "\e[32m 开始容器化kube-manager-api服务部署\e[0m"
         docker-compose up -d
-        resultDeploy=$(docker-compose ps | grep -E "op-prom-lark-api|op-kube_manage-mysql-5.7|op-kube-manage-ui" | grep "Up" | wc -l)
-        if [ $resultDeploy -eq 3 ]; then
+        resultDeploy=$(docker-compose ps | grep -E "op-prom-lark-api|op-kube_manage-mysql-5.7" | grep "Up" | wc -l)
+        if [ $resultDeploy -eq 2 ]; then
             echo -e "\e[32m 等待20秒MYSQL就绪,服务table初始化\e[0m"
             sleep 20
             docker exec -i op-prom-lark-api python /app/op-prom-lark-api/sql_app/models.py
             docker restart op-prom-lark-api
         else
-            echo -e "\e[31m op-prom-lark-api|op-prom-lark-api-5.7"
+            echo -e "\e[31m op-prom-lark-api|op-kube_manage-mysql-5.7"
             exit 1
         fi
         echo -e "\e[32m op-prom-lark-api-all 部署完毕,访问机器http://localhost:8888  Success\e[0m"
