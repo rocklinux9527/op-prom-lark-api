@@ -125,5 +125,3 @@ class LarkAlertService():
             return {"code": 50000, "data": "", "message": "业务线和webhook未配置,请提前配置...", "status": True}
         business_names = [item["business_name"] for item in data_list]
         return {"code": 20000, "data": business_names, "message": "query business_name list success", "status": True}
-
-
