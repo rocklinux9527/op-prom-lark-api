@@ -134,6 +134,7 @@ async def post_to_all_lark_webhooks(group: str, request: Request, request_data: 
     LarkAlertInstance = LarkAlertService()
     data = request_data.dict()
     user_request_data = await request.json()
+    print("alertManager 请求来了",user_request_data)
     if not (group):
         raise HTTPException(status_code=400, detail="业务线和webhook未配置,请提前配置")
     queryLarkWebhookList = LarkAlertInstance.query_all_lark_webhook()
