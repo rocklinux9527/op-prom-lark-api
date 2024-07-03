@@ -16,7 +16,6 @@ class UpdateWebhookItem(BaseModel):
 class DeleteWebhookItem(BaseModel):
     id: int
 
-
 class AlertItem(BaseModel):
     status: str
     labels: Dict[str, str]
